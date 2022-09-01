@@ -4,7 +4,7 @@ exports.createNewReview = async (ctx) => {
    ctx.body = await Review.create(ctx.request.body);
 }
 
-exports.fetchReviews = async (ctx) => {
+exports.getReviews = async (ctx) => {
   const reviews = await Review.findAll();
-  ctx.body = { reviews };
+  ctx.body = reviews;
 }

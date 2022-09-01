@@ -6,10 +6,10 @@ module.exports = {
     autoIncrement: true,
     primaryKey: true,
   },
-  imagePath: {
+  imageName: {
     type: DataTypes.STRING,
   },
   textReview: {
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT,
   },
 }

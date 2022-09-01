@@ -1,5 +1,8 @@
 const reviewsModel = require('../services/reviews');
 const { createNewReview, getReviewsList } = require('../services/data-client');
+const path = require('path');
+const fs = require('fs');
+const sharp = require('sharp');
 
 exports.getReviews = async (req, res) => {
     const reviews = await getReviewsList();
@@ -9,11 +12,15 @@ exports.getReviews = async (req, res) => {
 exports.uploadReview = async (req, res) => {
     const success = await reviewsModel.upload(req);
     const textReview = success.fields.review;
-    const imagePath = success.files.multipleFiles.filepath;
+    const imageName = success.files.multipleFiles.originalFilename;
     const newReview = {
         textReview: textReview,
-        imagePath: imagePath
+        imageName: imageName
     };
+    const image = fs.readFileSync(path.resolve(process.cwd(), './public/images/original/', imageName));
+        sharp(image)
+        .resize(400, 300)
+        .toFile(path.resolve(process.cwd(), './public/images/', imageName));
     const review = await createNewReview(newReview);
     res.send(review);
 }

@@ -6,5 +6,5 @@ exports.createNewMessage = async (ctx) => {
 
 exports.getMessages = async (ctx) => {
     const messages = await Message.findAll();
-    ctx.body = { messages };
+    ctx.body = messages;
 }

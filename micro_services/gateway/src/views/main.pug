@@ -20,12 +20,12 @@ block content
           form#formElem
             textarea(name="review" id="review" class="textarea" cols="60" rows="5")
             div.label Добавить фото:
-            input(type='file' name='multipleFiles' multiple='multiple')
-            input(type='submit' value='Оставить отзыв')
+            input.btn(type='file' name='multipleFiles' multiple='multiple')
+            input.btn(type='submit' value='Оставить отзыв')
         div#chat
           div#add-message
             div.label Добавить сообщение:
             textarea(name="message" id="message" class="textarea" cols="60" rows="5")
-            input(type='submit' value='Отправить' id='send-message')
+            input.btn(type='submit' value='Отправить' id='send-message')
           div#all_mess
           

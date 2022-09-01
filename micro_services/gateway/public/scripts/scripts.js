@@ -1,13 +1,27 @@
 window.addEventListener('DOMContentLoaded', async () => {
+  const container = document.getElementById('container');
   const getReviews = async () => {
       const reviews = (await fetch('/reviews').then((res) => res.json())) || [];
-      console.log(reviews);
-  }
+      reviews.forEach((review) => {
+        const reviewDiv = document.createElement('div');
+        reviewDiv.innerHTML = `<img src="images/${review.imageName}"></img><p>${review.textReview}</p>`;
+        reviewDiv.className = 'review';
+        container.append(reviewDiv);
+    });
+      }
   await getReviews();
 
   const getMessages = async () => {
     const messages = (await fetch('/messages').then((res) => res.json())) || [];
-    console.log(messages);
+    messages.forEach((message) => {
+    const chat = document.getElementById('all_mess');
+    const mess = document.createElement('div');
+    mess.className = "new-message";
+    
+    const time = Date.parse(message.createdAt);
+    mess.innerHTML = `<span>${message.author}   ${time}   ${message.message}</span>`;
+    chat.append(mess);
+    });
 }
 await getMessages();
 
